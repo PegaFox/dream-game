@@ -12,7 +12,7 @@ int main() {
 
   World world;
 
-  sf::RenderWindow SCREEN(sf::VideoMode(512, 512), "RPG game");
+  sf::RenderWindow SCREEN(sf::VideoMode(512, 512), "RPG game", sf::Style::Close);
   SCREEN.setFramerateLimit(60);
   while (SCREEN.isOpen()) {
     sf::Event event;

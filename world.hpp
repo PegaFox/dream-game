@@ -6,7 +6,7 @@ class World
   public:
     World()
     {
-
+      load();
     }
 
     void update()
@@ -22,9 +22,32 @@ class World
   private:
     void load()
     {
-      for (const auto& entry : std::filesystem::directory_iterator("assets/rooms"))
+      // load tiles
+      for (const std::filesystem::__cxx11::directory_entry& entry : std::filesystem::directory_iterator("./assets/tiles"))
       {
-        std::cout << entry.path() << std::endl;
+        sf::Image tileImage;
+        if (tileImage.loadFromFile(entry.path()))
+        {
+          tile_t tileIndex = std::stoul(entry.path().filename(), nullptr, 16);
+          tiles[tileIndex].loadFromImage(tileImage);
+        }
+      }
+
+      // load rooms
+      for (const std::filesystem::__cxx11::directory_entry& entry : std::filesystem::directory_iterator("./assets/rooms"))
+      {
+        sf::Image roomImage;
+        if (roomImage.loadFromFile(entry.path()))
+        {
+          world.push_back(Room(glm::uvec2(16, 16)));
+          for (int y = 0; y < 16; y++)
+          {
+            for (int x = 0; x < 16; x++)
+            {
+              world.back().at(glm::uvec2(x, y)) = roomImage.getPixel(x, y).toInteger();
+            }
+          }
+        }
       }
     }
 
@@ -32,4 +55,6 @@ class World
     float tileSize = 1.0f/16.0f;
 
     std::vector<Room> world;
+
+    std::map<tile_t, sf::Texture> tiles;
 };
