@@ -3,11 +3,15 @@
 #include <cmath>
 #include <pegafox/utils.hpp>
 
+#include "world.hpp"
+
 #include "player.hpp"
 
 int main() {
   pf::FPS fpsClock;
-  srand(time(0));
+
+  World world;
+
   sf::RenderWindow SCREEN(sf::VideoMode(512, 512), "RPG game");
   SCREEN.setFramerateLimit(60);
   while (SCREEN.isOpen()) {

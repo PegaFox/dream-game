@@ -14,6 +14,9 @@
 
 ## Todo
 
+- Create the basic engine
+  - Add tiled map
+  - Add NPC dialogue
 
 ## In Progress
 

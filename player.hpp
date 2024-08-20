@@ -1,5 +1,7 @@
 class Player {
   public:
+    Room* currentRoom;
+
     Player() {
       
     }
