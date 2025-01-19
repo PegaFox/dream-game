@@ -11,8 +11,29 @@ Window::Window(const std::initializer_list<GUIElement*>& children)
 
   body.shape.setFillColor(sf::Color(150, 50, 0));
 
-  std::copy(children.begin(), children.end(), this->children.first.begin());
-  this->children.second = children.size();
+  for (GUIElement* child: children)
+  {
+    this->children.first[this->children.second++] = std::unique_ptr<GUIElement>(child);
+  }
+}
+
+GUIElement* Window::addChild(GUIElement* child)
+{
+  children.first[children.second++].reset(child);
+}
+
+bool Window::removeChild()
+{
+  children.first[--children.second].reset();
+}
+
+GUIElement* Window::operator[](uint8_t index)
+{
+  if (index < children.second)
+  {
+    return children.first[index].get();
+  }
+  return nullptr;
 }
 
 void Window::draw(bool useGuiCoords)

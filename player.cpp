@@ -2,10 +2,16 @@
 
 #include <SFML/Window/Keyboard.hpp>
 
+#include "text.hpp"
+
 extern std::string rootDir;
 
 Player::Player() {
   sprite.loadFromFile(rootDir + "assets/entities/test_character.png");
+
+  Text* inventoryDescription = new Text();
+
+  inventoryMenu.addChild(inventoryDescription);
 
   pos = glm::vec2(4.0f);
 }

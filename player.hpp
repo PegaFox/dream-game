@@ -9,6 +9,8 @@ class Player;
 
 #include "item.hpp"
 
+#include "window.hpp"
+
 class Player: public Entity
 {
   public:
@@ -20,6 +22,8 @@ class Player: public Entity
 
   private:
     std::vector<Item*> hand;
+
+    Window inventoryMenu;
 };
 
 #endif
