@@ -1,15 +1,25 @@
-class Player {
+class Player;
+
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
+
+#include "entity.hpp"
+
+#include "room.hpp"
+
+#include "item.hpp"
+
+class Player: public Entity
+{
   public:
     Room* currentRoom;
 
-    Player() {
-      
-    }
+    Player();
 
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const {
-      target.draw(sprite);
-    }
+    void update();
+
   private:
-    sf::Sprite sprite;
-    sf::Texture tex;
+    std::vector<Item*> hand;
 };
+
+#endif

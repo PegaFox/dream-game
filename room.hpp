@@ -1,31 +1,30 @@
-#include <vector>
-#include <cstdint>
+class Room;
+
+#ifndef ROOM_HPP
+#define ROOM_HPP
+
+/*#include <vector>
+#include <cstdint>*/
+#include <map>
+#include "entity.hpp"
 
 typedef uint32_t tile_t;
 
 class Room
 {
   public:
-    Room(glm::uvec2 size): size(size), tiles(size.x * size.y)
-    {
+    std::vector<Entity*> entities;
 
-    }
+    Room(glm::uvec2 size);
 
-    tile_t& at(glm::uvec2 pos)
-    {
-      return tiles[pos.y * size.x + pos.x];
-    }
+    tile_t& at(glm::uvec2 pos);
 
-    void update()
-    {
+    void update();
 
-    }
-
-    void draw()
-    {
-
-    }
+    void draw(sf::RenderTarget& SCREEN, glm::vec2 origin, float tileSize, const std::map<tile_t, sf::Texture>& tileTextures);
   private:
     glm::uvec2 size;
     std::vector<tile_t> tiles;
 };
+
+#endif
