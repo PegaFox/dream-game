@@ -34,7 +34,7 @@ class GUIManager
 
     GUIElement* addElement(const Rect& rect);
 
-    bool removeElement(GUIElement* element);
+    //bool removeElement(GUIElement* element);
 
     const GUIElement* operator[](uint8_t index) const;
 

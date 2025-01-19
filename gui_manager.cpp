@@ -24,7 +24,7 @@ GUIElement* GUIManager::addElement(const Rect& rect)
   return &rects.first[rects.second-1];
 }
 
-bool GUIManager::removeElement(GUIElement* element)
+/*bool GUIManager::removeElement(GUIElement* element)
 {
   if (element >= windows.first.begin() && element < windows.first.end())
   {
@@ -51,7 +51,7 @@ bool GUIManager::removeElement(GUIElement* element)
   index -= rects.second;
 
   return nullptr;
-}
+}*/
 
 const GUIElement* GUIManager::operator[](uint8_t index) const
 {
