@@ -19,12 +19,24 @@ Window::Window(const std::initializer_list<GUIElement*>& children)
 
 GUIElement* Window::addChild(GUIElement* child)
 {
+  if (children.second == 32)
+  {
+    return nullptr;
+  }
+
   children.first[children.second++].reset(child);
+  return children.first[children.second-1].get();
 }
 
 bool Window::removeChild()
 {
+  if (children.second == 0)
+  {
+    return false;
+  }
+
   children.first[--children.second].reset();
+  return true;
 }
 
 GUIElement* Window::operator[](uint8_t index)

@@ -9,6 +9,8 @@ extern std::string rootDir;
 Player::Player() {
   sprite.loadFromFile(rootDir + "assets/entities/test_character.png");
 
+  inventoryMenu.size = glm::vec2(0.75f, 0.75f);
+
   Text* inventoryDescription = new Text();
 
   inventoryMenu.addChild(inventoryDescription);
@@ -18,7 +20,7 @@ Player::Player() {
 
 void Player::update()
 {
-  
+  inventoryMenu.draw();
 
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
     pos.y -= 0.1f;
