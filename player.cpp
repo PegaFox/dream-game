@@ -6,12 +6,16 @@
 
 extern std::string rootDir;
 
-Player::Player() {
+Player::Player()
+{
   sprite.loadFromFile(rootDir + "assets/entities/test_character.png");
 
   inventoryMenu.size = glm::vec2(0.75f, 0.75f);
 
   Text* inventoryDescription = new Text();
+  inventoryDescription->pos = glm::vec2(-0.98f, -0.98f);
+  inventoryDescription->size = glm::vec2(0.04f, 0.04f);
+  inventoryDescription->text.setFillColor(sf::Color(100, 50, 0));
 
   inventoryMenu.addChild(inventoryDescription);
 
@@ -20,18 +24,24 @@ Player::Player() {
 
 void Player::update()
 {
+  ((Text*)inventoryMenu[0])->text.setString("Inventory");
+
   inventoryMenu.draw();
 
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+  {
     pos.y -= 0.1f;
   }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+  {
     pos.y += 0.1f;
   }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+  {
     pos.x -= 0.1f;
   }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+  {
     pos.x += 0.1f;
   }
 }

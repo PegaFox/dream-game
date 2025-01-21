@@ -10,6 +10,7 @@
 - Villain tries to get rid of player by tricking them into thinking that they already beat the game?
 - Player has been brought to the world by PegaFox, and upon restarting, PegaFox rewinds time/wipes everyone's memories?
 - RPGmaker style?
+- Multiple endings?
 
 
 ## Todo

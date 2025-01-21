@@ -3,10 +3,12 @@
 
 #include <string>
 
-class Item {
+class Item
+{
   public:
     // mass is in Kilograms, volume is in litres
-    struct EquipmentFlags {
+    struct EquipmentFlags
+    {
       bool head: 1;
       bool chest: 1;
       bool leftHand: 1;

@@ -17,7 +17,8 @@ std::string rootDir;
 glm::uvec2 windowSize(512U, 512U);
 sf::RenderWindow SCREEN(sf::VideoMode(windowSize.x, windowSize.y), "RPG game", sf::Style::Close);
 
-int main() {
+int main()
+{
   const std::string_view searchDirs[] = {"./", "../"};
 
   for (const std::string_view& dir: searchDirs)
@@ -54,10 +55,13 @@ int main() {
   testWindow.size = glm::vec2(0.5f);
 
   SCREEN.setFramerateLimit(60);
-  while (SCREEN.isOpen()) {
+  while (SCREEN.isOpen())
+  {
     sf::Event event;
-    while (SCREEN.pollEvent(event)) {
-      switch (event.type) {
+    while (SCREEN.pollEvent(event))
+    {
+      switch (event.type)
+      {
         case sf::Event::Closed:
           SCREEN.close();
           break;
@@ -74,10 +78,11 @@ int main() {
 
     }
     
-    player.update();
     SCREEN.clear();
-    
+
     world.draw(SCREEN, player.pos);
+
+    player.update();
 
     SCREEN.display();
     SCREEN.setTitle(std::to_string(int(fpsClock.get_fps())));
