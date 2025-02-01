@@ -9,7 +9,7 @@ class Container;
 
 #include "item.hpp"
 
-class Container
+class Container: public Item
 {
   public:
     void addChild(Item* child, uint8_t index = -1);

@@ -10,7 +10,7 @@
 
 #include "player.hpp"
 
-#include "text.hpp"
+#include "gui_classes/text.hpp"
 
 std::string rootDir;
 

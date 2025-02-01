@@ -9,7 +9,7 @@ class Player;
 
 #include "item.hpp"
 
-#include "window.hpp"
+#include "gui_classes/window.hpp"
 
 class Player: public Entity
 {

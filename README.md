@@ -24,6 +24,10 @@
   - Make a GUI system
     - GUI to SFML space transform
 
+### Item ideas
+
+- Stick
+
 ## In Progress
 - Create the basic engine
   - Make a GUI system

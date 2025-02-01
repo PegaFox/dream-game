@@ -2,7 +2,7 @@
 
 #include <SFML/Window/Keyboard.hpp>
 
-#include "text.hpp"
+#include "gui_classes/text.hpp"
 
 extern std::string rootDir;
 
