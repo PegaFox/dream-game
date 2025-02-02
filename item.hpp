@@ -12,6 +12,8 @@ class Item
 
     virtual bool isContainer() = 0;
 
+    virtual bool isHookable() = 0;
+
     virtual float getMass() = 0;
 
     virtual float getVolume() = 0;

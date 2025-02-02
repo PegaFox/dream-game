@@ -3,6 +3,7 @@
 #include <SFML/Window/Keyboard.hpp>
 
 #include "gui_classes/text.hpp"
+#include "items/stick.hpp"
 
 extern std::string rootDir;
 
@@ -24,8 +25,15 @@ Player::Player()
 
 void Player::update()
 {
-  ((Text*)inventoryMenu[0])->text.setString("Inventory");
+  std::string inventoryStr = "Inventory\n";
 
+  inventoryStr += "Hand:\n";
+  for (Item* item: hand)
+  {
+    inventoryStr += "  " + item->name + "\n";
+  }
+
+  ((Text*)inventoryMenu[0])->text.setString(inventoryStr);
   inventoryMenu.draw();
 
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -43,5 +51,10 @@ void Player::update()
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
   {
     pos.x += 0.1f;
+  }
+
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+  {
+    hand.push_back(new Stick());
   }
 }
