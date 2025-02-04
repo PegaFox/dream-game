@@ -21,7 +21,8 @@ class Player: public Entity
     void update();
 
   private:
-    std::vector<Item*> hand;
+    std::vector<Item*> leftHand;
+    std::vector<Item*> rightHand;
 
     Window inventoryMenu;
 };

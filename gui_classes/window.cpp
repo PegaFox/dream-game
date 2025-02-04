@@ -1,10 +1,5 @@
 #include "window.hpp"
 
-#include <SFML/Graphics/RenderWindow.hpp>
-
-extern sf::RenderWindow SCREEN;
-extern glm::uvec2 windowSize;
-
 Window::Window(const std::initializer_list<GUIElement*>& children)
 {
   type = ElementType::Window;

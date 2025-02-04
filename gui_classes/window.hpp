@@ -6,7 +6,6 @@ class Window;
 #include <cstdint>
 #include <array>
 #include <memory>
-#include <SFML/Graphics/RectangleShape.hpp>
 #include "gui_element.hpp"
 #include "rect.hpp"
 

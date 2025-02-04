@@ -14,7 +14,8 @@ class GUIElement
       Window,
       Text,
       Button,
-      Rect
+      Rect,
+      DragField
     };
 
     // normalized, -1.0 to 1.0 range coordinate

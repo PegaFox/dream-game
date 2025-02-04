@@ -27,8 +27,14 @@ void Player::update()
 {
   std::string inventoryStr = "Inventory\n";
 
-  inventoryStr += "Hand:\n";
-  for (Item* item: hand)
+  inventoryStr += "Left Hand:\n";
+  for (Item* item: leftHand)
+  {
+    inventoryStr += "  " + item->name + "\n";
+  }
+
+  inventoryStr += "Right Hand:\n";
+  for (Item* item: rightHand)
   {
     inventoryStr += "  " + item->name + "\n";
   }
@@ -55,6 +61,6 @@ void Player::update()
 
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
   {
-    hand.push_back(new Stick());
+    leftHand.push_back(new Stick());
   }
 }
