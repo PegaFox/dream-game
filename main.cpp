@@ -12,10 +12,15 @@
 
 #include "gui_classes/text.hpp"
 
+GUIElement* GUIElement::held = nullptr;
+
 std::string rootDir;
 
 glm::uvec2 windowSize(512U, 512U);
 sf::RenderWindow SCREEN(sf::VideoMode(windowSize.x, windowSize.y), "RPG game", sf::Style::Close);
+
+glm::uvec2 mPos(0U);
+glm::ivec2 mDelta(0);
 
 int main()
 {
@@ -57,6 +62,8 @@ int main()
   SCREEN.setFramerateLimit(60);
   while (SCREEN.isOpen())
   {
+    mDelta = mPos;
+    
     sf::Event event;
     while (SCREEN.pollEvent(event))
     {
@@ -65,8 +72,12 @@ int main()
         case sf::Event::Closed:
           SCREEN.close();
           break;
+        case sf::Event::MouseMoved:
+          mPos = glm::uvec2(event.mouseMove.x, event.mouseMove.y);
+          break;
       }
     }
+    mDelta = glm::ivec2(mPos) - mDelta;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Dash))
     {
