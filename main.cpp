@@ -10,9 +10,7 @@
 
 #include "player.hpp"
 
-#include "gui_classes/text.hpp"
-
-GUIElement* GUIElement::held = nullptr;
+#include "gui-lib/paragraph.hpp"
 
 std::string rootDir;
 
@@ -37,7 +35,7 @@ int main()
     }
   }
 
-  Text::font.loadFromFile(rootDir + "assets/fonts/PublicPixel.ttf");
+  pfui::Paragraph::font.loadFromFile(rootDir + "assets/fonts/PublicPixel.ttf");
 
   pf::FPS fpsClock;
 
@@ -45,18 +43,22 @@ int main()
 
   World world(player);
 
-  Rect* testRect = new Rect;
+  pfui::VertexArray* testRect = new pfui::VertexArray;
+  testRect->shape.setPrimitiveType(sf::TriangleFan);
+  testRect->shape.append(sf::Vertex(sf::Vector2f(-0.5f, -0.5f), sf::Color(0, 50, 0)));
+  testRect->shape.append(sf::Vertex(sf::Vector2f(-0.5f, 0.5f), sf::Color(0, 50, 0)));
+  testRect->shape.append(sf::Vertex(sf::Vector2f(0.5f, 0.5f), sf::Color(0, 50, 0)));
+  testRect->shape.append(sf::Vertex(sf::Vector2f(0.5f, -0.5f), sf::Color(0, 50, 0)));
   testRect->pos = glm::vec2(-0.35f, -0.95);
   testRect->size = glm::vec2(0.65f, 0.05);
-  testRect->shape.setFillColor(sf::Color(0, 50, 0));
 
-  Text* testText = new Text;
+  pfui::Paragraph* testText = new pfui::Paragraph;
   testText->pos = glm::vec2(-1.0f);
   testText->size = glm::vec2(0.05f);
   testText->text.setFillColor(sf::Color(100, 50, 0));
   testText->text.setString("Inventory");
 
-  Window testWindow({testRect, testText});
+  pfui::Window testWindow({testRect, testText});
   testWindow.size = glm::vec2(0.5f);
 
   SCREEN.setFramerateLimit(60);
@@ -67,6 +69,7 @@ int main()
     sf::Event event;
     while (SCREEN.pollEvent(event))
     {
+      pfui::GUIElement::getEvent(event);
       switch (event.type)
       {
         case sf::Event::Closed:

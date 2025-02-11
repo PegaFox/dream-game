@@ -9,7 +9,7 @@ class Player;
 
 #include "item.hpp"
 
-#include "gui_classes/window.hpp"
+#include "gui-lib/window.hpp"
 
 class Player: public Entity
 {
@@ -24,7 +24,7 @@ class Player: public Entity
     std::vector<Item*> leftHand;
     std::vector<Item*> rightHand;
 
-    Window inventoryMenu;
+    pfui::Window inventoryMenu;
 };
 
 #endif

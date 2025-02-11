@@ -1,22 +1,26 @@
 #include "player.hpp"
 
 #include <SFML/Window/Keyboard.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
-#include "gui_classes/text.hpp"
-#include "gui_classes/drag_field.hpp"
+#include "gui-lib/paragraph.hpp"
+#include "gui-lib/drag_field.hpp"
 #include "items/stick.hpp"
 
 extern std::string rootDir;
+extern sf::RenderWindow SCREEN;
 
 Player::Player()
 {
   sprite.loadFromFile(rootDir + "assets/entities/test_character.png");
 
-  inventoryMenu.size = glm::vec2(0.75f, 0.75f);
+  inventoryMenu.maximizeButton = false;
+  inventoryMenu.minimizeButton = false;
+  inventoryMenu.size = glm::vec2(1.5f, 1.5f);
 
-  Text* inventoryLables = new Text();
+  pfui::Paragraph* inventoryLables = new pfui::Paragraph();
   inventoryLables->pos = glm::vec2(-0.98f, -0.98f);
-  inventoryLables->size = glm::vec2(0.04f, 0.04f);
+  inventoryLables->size = glm::vec2(0.08f, 0.08f);
   inventoryLables->text.setFillColor(sf::Color(100, 50, 0));
   inventoryLables->text.setString("Left Hand\nRight Hand");
 
@@ -27,7 +31,7 @@ Player::Player()
 
 void Player::update()
 {
-  inventoryMenu.draw();
+  inventoryMenu.draw(SCREEN);
 
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
   {
