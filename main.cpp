@@ -15,7 +15,7 @@
 std::string rootDir;
 
 glm::uvec2 windowSize(512U, 512U);
-sf::RenderWindow SCREEN(sf::VideoMode(windowSize.x, windowSize.y), "RPG game", sf::Style::Close);
+sf::RenderWindow SCREEN(sf::VideoMode(sf::Vector2u(windowSize.x, windowSize.y)), "RPG game", sf::Style::Close);
 
 glm::uvec2 mPos(0U);
 glm::ivec2 mDelta(0);
@@ -35,7 +35,10 @@ int main()
     }
   }
 
-  pfui::Paragraph::font.loadFromFile(rootDir + "assets/fonts/PublicPixel.ttf");
+  if (!pfui::Paragraph::font.openFromFile(rootDir + "assets/fonts/PublicPixel.ttf"))
+  {
+    std::cout << "failed to find UI font\n";
+  }
 
   pf::FPS fpsClock;
 
@@ -44,7 +47,7 @@ int main()
   World world(player);
 
   pfui::VertexArray* testRect = new pfui::VertexArray;
-  testRect->shape.setPrimitiveType(sf::TriangleFan);
+  testRect->shape.setPrimitiveType(sf::PrimitiveType::TriangleFan);
   testRect->shape.append(sf::Vertex(sf::Vector2f(-0.5f, -0.5f), sf::Color(0, 50, 0)));
   testRect->shape.append(sf::Vertex(sf::Vector2f(-0.5f, 0.5f), sf::Color(0, 50, 0)));
   testRect->shape.append(sf::Vertex(sf::Vector2f(0.5f, 0.5f), sf::Color(0, 50, 0)));
@@ -66,28 +69,26 @@ int main()
   {
     mDelta = mPos;
     
-    sf::Event event;
-    while (SCREEN.pollEvent(event))
+    while (std::optional<sf::Event> event = SCREEN.pollEvent())
     {
       pfui::GUIElement::getEvent(event);
-      switch (event.type)
+      
+      if (event->is<sf::Event::Closed>())
       {
-        case sf::Event::Closed:
-          SCREEN.close();
-          break;
-        case sf::Event::MouseMoved:
-          mPos = glm::uvec2(event.mouseMove.x, event.mouseMove.y);
-          break;
+        SCREEN.close();
+      } else if (const sf::Event::MouseMoved* move = event->getIf<sf::Event::MouseMoved>())
+      {
+        mPos = glm::uvec2(move->position.x, move->position.y);
       }
     }
     mDelta = glm::ivec2(mPos) - mDelta;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Dash))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Hyphen))
     {
       
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Equal))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Equal))
     {
 
     }

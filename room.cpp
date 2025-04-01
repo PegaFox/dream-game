@@ -27,14 +27,14 @@ void Room::draw(sf::RenderTarget& SCREEN, glm::vec2 origin, float tileSize, cons
       if (tex != tileTextures.cend())
       {
         sf::Sprite sprite(tex->second);
-        sprite.setScale(tileSize / tex->second.getSize().x, tileSize / tex->second.getSize().y);
-        sprite.setPosition(windowSize.x*0.5f + x*tileSize - tileSize*0.5f - origin.x*tileSize, windowSize.y*0.5f + y*tileSize - tileSize*0.5f - origin.y*tileSize);
+        sprite.setScale(sf::Vector2f(tileSize / tex->second.getSize().x, tileSize / tex->second.getSize().y));
+        sprite.setPosition(sf::Vector2f(windowSize.x*0.5f + x*tileSize - tileSize*0.5f - origin.x*tileSize, windowSize.y*0.5f + y*tileSize - tileSize*0.5f - origin.y*tileSize));
         SCREEN.draw(sprite);
       } else
       {
         sf::RectangleShape rect(sf::Vector2f(tileSize, tileSize));
         rect.setFillColor(sf::Color(at(glm::uvec2(x, y))));
-        rect.setPosition(windowSize.x*0.5f + x*tileSize - tileSize*0.5f - origin.x*tileSize, windowSize.y*0.5f + y*tileSize - tileSize*0.5f - origin.y*tileSize);
+        rect.setPosition(sf::Vector2f(windowSize.x*0.5f + x*tileSize - tileSize*0.5f - origin.x*tileSize, windowSize.y*0.5f + y*tileSize - tileSize*0.5f - origin.y*tileSize));
         SCREEN.draw(rect);
       }
     }

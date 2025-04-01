@@ -1,10 +1,10 @@
 #include "player.hpp"
 
+#include <iostream>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include "gui-lib/paragraph.hpp"
-#include "gui-lib/drag_field.hpp"
 #include "items/stick.hpp"
 
 extern std::string rootDir;
@@ -12,7 +12,10 @@ extern sf::RenderWindow SCREEN;
 
 Player::Player()
 {
-  sprite.loadFromFile(rootDir + "assets/entities/test_character.png");
+  if (!sprite.loadFromFile(rootDir + "assets/entities/test_character.png"))
+  {
+    std::cout << "failed to load player sprite\n";
+  }
 
   inventoryMenu.maximizeButton = false;
   inventoryMenu.minimizeButton = false;
@@ -33,24 +36,24 @@ void Player::update()
 {
   inventoryMenu.draw(SCREEN);
 
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
   {
     pos.y -= 0.1f;
   }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
   {
     pos.y += 0.1f;
   }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
   {
     pos.x -= 0.1f;
   }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
   {
     pos.x += 0.1f;
   }
 
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
   {
     leftHand.push_back(new Stick());
   }

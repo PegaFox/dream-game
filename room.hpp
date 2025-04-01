@@ -3,8 +3,8 @@ class Room;
 #ifndef ROOM_HPP
 #define ROOM_HPP
 
-/*#include <vector>
-#include <cstdint>*/
+#include <vector>
+/*#include <cstdint>*/
 #include <map>
 #include "entity.hpp"
 

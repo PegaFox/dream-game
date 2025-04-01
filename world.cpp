@@ -1,5 +1,7 @@
 #include "world.hpp"
 
+#include <SFML/Graphics/Image.hpp>
+#include <iostream>
 #include <filesystem>
 
 World::World(Player& player)
@@ -37,7 +39,10 @@ void World::load()
       if (tileImage.loadFromFile(entry.path()))
       {
         tile_t tileIndex = std::stoul(entry.path().filename(), nullptr, 16);
-        tileTextures[tileIndex].loadFromImage(tileImage);
+        if (!tileTextures[tileIndex].loadFromImage(tileImage))
+        {
+         std::cout << "failed to load image \"" << entry.path() << "\"\n";
+        }
       }
     }
   }
@@ -60,7 +65,7 @@ void World::load()
         {
           for (int x = 0; x < 16; x++)
           {
-            rooms.back().at(glm::uvec2(x, y)) = roomImage.getPixel(x, y).toInteger();
+            rooms.back().at(glm::uvec2(x, y)) = roomImage.getPixel(sf::Vector2u(x, y)).toInteger();
           }
         }
       }

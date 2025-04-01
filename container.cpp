@@ -4,7 +4,7 @@
 
 #include "item.hpp"
 
-void Container::addChild(Item* child, uint8_t index = -1)
+void Container::addChild(Item* child, uint8_t index)
 {
   if (contents.second == 32)
   {
@@ -14,7 +14,7 @@ void Container::addChild(Item* child, uint8_t index = -1)
   contents.first[contents.second++].reset(child);
 }
 
-bool Container::removeChild(uint8_t index = -1)
+bool Container::removeChild(uint8_t index)
 {
   if (contents.second == 0)
   {
