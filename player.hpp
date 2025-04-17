@@ -25,6 +25,8 @@ class Player: public Entity
     std::vector<Item*> rightHand;
 
     pfui::Window inventoryMenu;
+    pfui::Window leftHandMenu;
+    pfui::Window rightHandMenu;
 };
 
 #endif
