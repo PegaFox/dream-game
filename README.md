@@ -26,7 +26,7 @@
 - Create the basic engine
   - Add NPC dialogue
   - Realistic inventory system
-    - Dropdown with item size represented in height, and item weight represented as a gradient from green to red
+    - Dropdown with item volume represented in height, and item weight represented as a gradient from green to red
 
 ## In Progress
 

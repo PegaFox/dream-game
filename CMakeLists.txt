@@ -8,6 +8,6 @@ project(RPG-game)
 
 add_subdirectory(gui-lib)
 
-add_executable(RPG_game main.cpp player.cpp room.cpp world.cpp)
+add_executable(RPG_game main.cpp item.cpp player.cpp room.cpp world.cpp)
 
 target_link_libraries(RPG_game sfml-graphics sfml-window sfml-system gui-lib)

@@ -26,7 +26,6 @@ Player::Player()
   pfui::Paragraph* inventoryLables = new pfui::Paragraph();
   inventoryLables->pos = glm::vec2(-0.98f, -0.98f);
   inventoryLables->size = glm::vec2(0.08f, 0.08f);
-  inventoryLables->text.setFillColor(sf::Color(100, 50, 0));
   inventoryLables->text.setString("Left Hand\nRight Hand");
 
   pfui::Button* leftHandButton = new pfui::Button();
@@ -88,9 +87,7 @@ void Player::update()
   {
     leftHand.push_back(new Stick());
 
-    pfui::DragBox* itemBox = new pfui::DragBox();
-    itemBox->size.y = 0.5f;
-    ((pfui::DragField*)leftHandMenu[0])->addChild(itemBox);
+    ((pfui::DragField*)leftHandMenu[0])->addChild(leftHand.back()->getDrawBox());
   }
 
   if (((pfui::Button*)inventoryMenu[0])->isPressed())
