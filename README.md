@@ -25,8 +25,6 @@
 
 - Create the basic engine
   - Add NPC dialogue
-  - Realistic inventory system
-    - Dropdown with item volume represented in height, and item weight represented as a gradient from green to red
 
 ## In Progress
 
@@ -34,6 +32,8 @@
 
 - Create the basic engine
   - Make a GUI system
+  - Realistic inventory system
+    - Dropdown with item volume represented in height, and item weight represented as a gradient from green to red
 
 - Create the basic engine
   - Add tiled map
